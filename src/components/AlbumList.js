@@ -4,16 +4,23 @@ import axios from 'axios';
 
 
 class AlbumList extends Component {
-    state = { youu : [] };
+    state = { albums : [] };
 
     componentWillMount() {
         axios.get('https://rallycoding.herokuapp.com/api/music_albums')
-         .then(response => this.setState ({ youu : response.data }));
+         .then(response => this.setState ({ albums : response.data }));
     }
+
+    renderAlbums() {
+        return this.state.albums.map(album => 
+            <Text> key = {album.title}>{ album.title }</Text>
+        );
+    }
+
     render() {
         return (
             <View>
-                <Text>Youu List</Text>
+                { this.renderAlbums}
             </View>
         );
     };
